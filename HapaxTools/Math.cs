@@ -51,5 +51,26 @@ namespace HapaxTools
             int babs = System.Math.Abs(b);
             return a - babs * FlooredDiv(a, babs);
         }
+
+        /// <summary>
+        /// Greatest Common Divisor (Euclidean algorithm).
+        /// </summary>
+        public static long GreatestCommonDivisor(long a, long b)
+        {
+            return b == 0 ? a : GreatestCommonDivisor(b, a % b);
+        }
+
+        /// <summary>
+        /// Least Common Multiple (Reduction by the GCD).
+        /// </summary>
+        public static long LeastCommonMultiple(params long[] numbers)
+        {
+            return numbers.Aggregate(LCM);
+        }
+
+        private static long LCM(long a, long b)
+        {
+            return System.Math.Abs(a * b) / GreatestCommonDivisor(a, b);
+        }
     }
 }
