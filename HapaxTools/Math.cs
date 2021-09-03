@@ -63,9 +63,17 @@ namespace HapaxTools
         /// <summary>
         /// Least Common Multiple (Reduction by the GCD).
         /// </summary>
-        public static long LeastCommonMultiple(params long[] numbers)
+        public static long LeastCommonMultiple(params long[] values)
         {
-            return numbers.Aggregate(LCM);
+            return values.Aggregate(LCM);
+        }
+
+        /// <summary>
+        /// Least Common Multiple (Reduction by the GCD).
+        /// </summary>
+        public static long LeastCommonMultiple(IEnumerable<long> values)
+        {
+            return values.Aggregate(LCM);
         }
 
         private static long LCM(long a, long b)
