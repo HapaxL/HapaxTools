@@ -55,9 +55,22 @@ namespace HapaxTools
         /// <summary>
         /// Greatest Common Divisor (Euclidean algorithm).
         /// </summary>
-        public static long GreatestCommonDivisor(long a, long b)
+        public static long GreatestCommonDivisor(params long[] values)
         {
-            return b == 0 ? a : GreatestCommonDivisor(b, a % b);
+            return values.Aggregate(GCD);
+        }
+
+        /// <summary>
+        /// Greatest Common Divisor (Euclidean algorithm).
+        /// </summary>
+        public static long GreatestCommonDivisor(IEnumerable<long> values)
+        {
+            return values.Aggregate(GCD);
+        }
+
+        public static long GCD(long a, long b)
+        {
+            return b == 0 ? a : GCD(b, a % b);
         }
 
         /// <summary>
@@ -78,7 +91,7 @@ namespace HapaxTools
 
         private static long LCM(long a, long b)
         {
-            return System.Math.Abs(a * b) / GreatestCommonDivisor(a, b);
+            return System.Math.Abs(a * b) / GCD(a, b);
         }
     }
 }
